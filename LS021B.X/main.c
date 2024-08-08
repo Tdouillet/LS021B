@@ -47,31 +47,36 @@
 */
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/pin_manager.h"
-#include "mcc_generated_files/mccp6_compare.h"
 #include "DELAY.h"
 #include "mcc_generated_files/tmr4.h"
+#include "mcc_generated_files/mccp4_compare.h"
+#include "extra_fct.h"
 
 uint8_t va_ok = 0;
-uint32_t data_count = 0;
-uint8_t data_send = 0; 
-uint8_t rts = 0;
-uint8_t color = 1;
 uint8_t vb_ok = 0;
+
+uint8_t draw_ok= 0;
+
 /*
                          Main application
  */
-void Draw_Black(void){
-    INTB_SetHigh();
-    GSP_SetHigh();
-    Delay_us(165);
-    GSP_SetLow();
-    rts = 1;
-    data_send = 1;
+
+void Delay(unsigned int msec)
+{
+   while(msec > 0)
+   {
+       __delay_ms(1);
+      msec--;
+    }
 }
 
-void Draw_White(void){
-    rts = 1;
-    data_send = 0;
+void Delay_us(unsigned int usec)
+{
+   while(usec > 0)
+   {
+       __delay_us(1);
+      usec--;
+    }
 }
 
 void T4handler(void){
@@ -84,43 +89,75 @@ void T4handler(void){
     }
 }
 
-void init_seq(void){
-    uint8_t toto=0;
-    R0_SetLow();
-    R1_SetLow();
-    G0_SetLow();
-    G1_SetLow();
-    B0_SetLow();
-    B1_SetLow();
-    INTB_SetHigh();
-    Delay_us(21);
-    GSP_SetHigh();
-    GCK_SetLow();
-    Delay_us(41);
-    GCK_SetHigh();
-    Delay_us(84);
-    GCK_SetLow();
-    Delay_us(42);
-    GSP_SetLow();
-    Delay_us(42);
-    for(uint16_t k=0; k<646;k++){
-        GCK_Toggle();
-        BSP_SetHigh();
-        for(uint8_t i=0; i<124;i++){
-            toto++;
-            if(toto==40){
-                GEN_SetHigh();
-            }
-            else if(toto==90)
-                GEN_SetLow();
-            BCK_Toggle();
-        }
-        toto=0;
-        BSP_SetLow();
-    }
-    Delay_us(21);
-    INTB_SetLow();
+void Draw(void){
+    draw_ok = 1;    
 }
+
+
+
+int main(void)
+{
+    
+    // initialize the device
+    SYSTEM_Initialize();
+    uint32_t total_count = 0;
+    BCK_SetLow();
+    VA_SetLow();
+    VCOM_SetLow();
+    LED9_SetHigh();
+    TMR4_SetInterruptHandler(T4handler);
+    TMR4_Start();
+    draw_ok=1;
+    Red();
+    INTB_SetHigh();
+    GSP_SetHigh();
+    MCCP4_COMPARE_Start();
+//    Delay(500);
+    
+    while (1)
+    {
+        if (draw_ok){
+            total_count++;
+            
+            if (total_count%2==0){
+                BSP_SetHigh();
+            } else if (total_count%2==1){
+                BSP_SetLow();
+            }
+            if (total_count%4==0){
+                GCK_Toggle();
+            } else if (total_count%4==2){
+                GCK_Toggle();
+            }
+            if (total_count%664==131){
+                GEN_SetHigh();
+            } else if (total_count%664==533){
+                GEN_SetLow();
+            }
+            if (total_count%430272==0){
+               total_count = 0;
+               GSP_SetHigh();
+               INTB_SetHigh();
+            } else if (total_count%429360==0){
+                INTB_SetLow();
+            }  
+            if (total_count==1328){
+                GSP_SetLow();
+            }
+        } else{
+            BCK_Off();
+        }
+    }
+
+    return 1;
+    }
+/**
+ End of File
+*/
+
+/*
+ _____________________________Deprecated_______________________________________
+ */
 
 void white(void){
     uint8_t toto=0;
@@ -159,37 +196,3 @@ void white(void){
     Delay_us(21);
     INTB_SetLow();
 }
-
-int main(void)
-{
-    // initialize the device
-    SYSTEM_Initialize();
-    VA_SetLow();
-    VCOM_SetLow();
-    LED9_SetHigh();
-//    TMR4_SetInterruptHandler(T4handler);
-    init_seq();
-    
-    
-    Delay(1000);
-    VCOM_SetHigh();
-    Delay(9);
-    VCOM_SetLow();
-    VA_SetHigh();
-    white();
-//    TMR4_Start();
-    LED9_SetLow();
-    
-    //MCCP6_COMPARE_Start();
-    
-    while (1)
-    {
-        
-    }
-
-    return 1;
-}
-/**
- End of File
-*/
-

@@ -61,17 +61,17 @@
 #pragma config BSLIM = 8191    //Boot Segment Flash Page Address Limit bits->8191
 
 // FOSCSEL
-#pragma config FNOSC = FRC    //Oscillator Source Selection->Internal Fast RC (FRC)
-#pragma config PLLMODE = DISABLED    //PLL Mode Selection->No PLL used; PLLEN bit is not available
+#pragma config FNOSC = FRC    //Oscillator Source Selection->FRC
+#pragma config PLLMODE = PLL4X    //PLL Mode Selection->4x PLL selected
 #pragma config IESO = OFF    //Two-speed Oscillator Start-up Enable bit->Start up with user-selected oscillator source
 
 // FOSC
-#pragma config POSCMD = NONE    //Primary Oscillator Mode Select bits->Primary Oscillator disabled
+#pragma config POSCMD = XT    //Primary Oscillator Mode Select bits->XT Crystal Oscillator mode
 #pragma config OSCIOFCN = ON    //OSC2 Pin Function bit->RC15 is general purpose digital I/O pin
 #pragma config SOSCEN = OFF    //SOSC Power Selection Configuration bits->SOSC crystal driver is disabled (RC13/RC14 mode)
 #pragma config PLLSS = PRI    //PLL Secondary Selection Configuration bit->PLL is fed by the Primary oscillator
 #pragma config IOL1WAY = ON    //Peripheral pin select configuration bit->Allow only one reconfiguration
-#pragma config FCKSM = CSDCMD    //Clock Switching Mode bits->Both Clock switching and Fail-safe Clock Monitor are disabled
+#pragma config FCKSM = CSECMD    //Clock Switching Mode bits->Clock switching is enabled and Fail-safe Clock Monitor is disabled
 
 // FWDT
 #pragma config WDTPS = PS32768    //Watchdog Timer Postscaler bits->1:32768
@@ -117,20 +117,18 @@
 #include "pin_manager.h"
 #include "clock.h"
 #include "system.h"
-#include "tmr3.h"
-#include "tmr4.h"
+#include "mccp4_compare.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "mccp6_compare.h"
+#include "tmr4.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    INTERRUPT_Initialize();
     CLOCK_Initialize();
-    //MCCP6_COMPARE_Initialize();
-    //TMR3_Initialize();
-    //TMR4_Initialize();
+    INTERRUPT_Initialize();
+    MCCP4_COMPARE_Initialize();
+    TMR4_Initialize();
 }
 
 /**

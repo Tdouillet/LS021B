@@ -54,6 +54,13 @@
 #include "pin_manager.h"
 
 /**
+ Section: File specific functions
+*/
+void (*BP6_InterruptHandler)(void) = NULL;
+void (*BP4_InterruptHandler)(void) = NULL;
+void (*BP3_InterruptHandler)(void) = NULL;
+
+/**
  Section: Driver Interface Function Definitions
 */
 void PIN_MANAGER_Initialize (void)
@@ -136,7 +143,7 @@ void PIN_MANAGER_Initialize (void)
     ANSA = 0x0080;
     ANSB = 0x8F3F;
     ANSC = 0x0010;
-    ANSD = 0x00C0;
+    ANSD = 0x0040;
     ANSE = 0x0218;
     ANSG = 0x03C0;
     
@@ -145,8 +152,131 @@ void PIN_MANAGER_Initialize (void)
      ***************************************************************************/
     __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
 
-    RPOR11bits.RP23R = 0x0014;    //RD2->MCCP6:OCM6A
+    RPOR11bits.RP23R = 0x0010;    //RD2->MCCP4:OCM4A
 
     __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
+    
+    /****************************************************************************
+     * Interrupt On Change: negative
+     ***************************************************************************/
+    IOCNDbits.IOCND13 = 1;    //Pin : RD13
+    IOCNDbits.IOCND7 = 1;    //Pin : RD7
+    IOCNGbits.IOCNG15 = 1;    //Pin : RG15
+    /****************************************************************************
+     * Interrupt On Change: flag
+     ***************************************************************************/
+    IOCFDbits.IOCFD13 = 0;    //Pin : RD13
+    IOCFDbits.IOCFD7 = 0;    //Pin : RD7
+    IOCFGbits.IOCFG15 = 0;    //Pin : RG15
+    /****************************************************************************
+     * Interrupt On Change: config
+     ***************************************************************************/
+    PADCONbits.IOCON = 1;    //Config for PORTG
+    
+    /* Initialize IOC Interrupt Handler*/
+    BP6_SetInterruptHandler(&BP6_CallBack);
+    BP4_SetInterruptHandler(&BP4_CallBack);
+    BP3_SetInterruptHandler(&BP3_CallBack);
+    
+    /****************************************************************************
+     * Interrupt On Change: Interrupt Enable
+     ***************************************************************************/
+    IFS1bits.IOCIF = 0; //Clear IOCI interrupt flag
+    IEC1bits.IOCIE = 1; //Enable IOCI interrupt
+}
+
+void __attribute__ ((weak)) BP6_CallBack(void)
+{
+
+}
+
+void __attribute__ ((weak)) BP4_CallBack(void)
+{
+
+}
+
+void __attribute__ ((weak)) BP3_CallBack(void)
+{
+
+}
+
+void BP6_SetInterruptHandler(void (* InterruptHandler)(void))
+{ 
+    IEC1bits.IOCIE = 0; //Disable IOCI interrupt
+    BP6_InterruptHandler = InterruptHandler; 
+    IEC1bits.IOCIE = 1; //Enable IOCI interrupt
+}
+
+void BP6_SetIOCInterruptHandler(void *handler)
+{ 
+    BP6_SetInterruptHandler(handler);
+}
+
+void BP4_SetInterruptHandler(void (* InterruptHandler)(void))
+{ 
+    IEC1bits.IOCIE = 0; //Disable IOCI interrupt
+    BP4_InterruptHandler = InterruptHandler; 
+    IEC1bits.IOCIE = 1; //Enable IOCI interrupt
+}
+
+void BP4_SetIOCInterruptHandler(void *handler)
+{ 
+    BP4_SetInterruptHandler(handler);
+}
+
+void BP3_SetInterruptHandler(void (* InterruptHandler)(void))
+{ 
+    IEC1bits.IOCIE = 0; //Disable IOCI interrupt
+    BP3_InterruptHandler = InterruptHandler; 
+    IEC1bits.IOCIE = 1; //Enable IOCI interrupt
+}
+
+void BP3_SetIOCInterruptHandler(void *handler)
+{ 
+    BP3_SetInterruptHandler(handler);
+}
+
+/* Interrupt service routine for the IOCI interrupt. */
+void __attribute__ (( interrupt, no_auto_psv )) _IOCInterrupt ( void )
+{
+    if(IFS1bits.IOCIF == 1)
+    {
+        if(IOCFDbits.IOCFD7 == 1)
+        {
+            if(BP6_InterruptHandler) 
+            { 
+                BP6_InterruptHandler(); 
+            }
+            
+            IOCFDbits.IOCFD7 = 0;  //Clear flag for Pin - RD7
+
+        }
+        
+        if(IOCFDbits.IOCFD13 == 1)
+        {
+            if(BP4_InterruptHandler) 
+            { 
+                BP4_InterruptHandler(); 
+            }
+            
+            IOCFDbits.IOCFD13 = 0;  //Clear flag for Pin - RD13
+
+        }
+        
+        if(IOCFGbits.IOCFG15 == 1)
+        {
+            if(BP3_InterruptHandler) 
+            { 
+                BP3_InterruptHandler(); 
+            }
+            
+            IOCFGbits.IOCFG15 = 0;  //Clear flag for Pin - RG15
+
+        }
+        
+        
+        // Clear the flag
+        IFS1bits.IOCIF = 0;
+    }
 }
 

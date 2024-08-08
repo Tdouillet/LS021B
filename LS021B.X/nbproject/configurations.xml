@@ -13,12 +13,17 @@
         <itemPath>mcc_generated_files/clock.h</itemPath>
         <itemPath>mcc_generated_files/traps.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
-        <itemPath>mcc_generated_files/tmr3.h</itemPath>
         <itemPath>mcc_generated_files/tmr4.h</itemPath>
-        <itemPath>mcc_generated_files/mccp6_compare.h</itemPath>
+        <itemPath>mcc_generated_files/mccp4_compare.h</itemPath>
       </logicalFolder>
       <itemPath>DELAY.h</itemPath>
       <itemPath>extra_fct.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <itemPath>Makefile</itemPath>
+      <itemPath>LS021B.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -36,19 +41,12 @@
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
         <itemPath>mcc_generated_files/system.c</itemPath>
         <itemPath>mcc_generated_files/clock.c</itemPath>
-        <itemPath>mcc_generated_files/tmr3.c</itemPath>
         <itemPath>mcc_generated_files/tmr4.c</itemPath>
-        <itemPath>mcc_generated_files/mccp6_compare.c</itemPath>
+        <itemPath>mcc_generated_files/mccp4_compare.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>DELAY.c</itemPath>
       <itemPath>extra_fct.c</itemPath>
-    </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <itemPath>Makefile</itemPath>
-      <itemPath>LS021B.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -233,8 +231,6 @@
       <Tool>
         <property key="firmware.download.all" value="false"/>
       </Tool>
-      <item path="extra_fct.c" ex="true" overriding="false">
-      </item>
     </conf>
   </confs>
 </configurationDescriptor>

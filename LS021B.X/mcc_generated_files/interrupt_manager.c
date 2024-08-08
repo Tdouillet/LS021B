@@ -52,14 +52,11 @@
 */
 void INTERRUPT_Initialize (void)
 {
+    //    IOCI: IOC -  Interrupt On Change Interrupt
+    //    Priority: 1
+        IPC4bits.IOCIP = 1;
     //    TI: T4 - Timer4
     //    Priority: 1
         IPC6bits.T4IP = 1;
-    //    TI: T3 - Timer3
-    //    Priority: 1
-        IPC2bits.T3IP = 1;
-    //    CCTI: CCT6 - Capture/Compare Timer 6
-    //    Priority: 1
-        IPC12bits.CCT6IP = 1;
 
 }

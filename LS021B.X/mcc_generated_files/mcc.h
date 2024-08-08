@@ -51,11 +51,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "tmr3.h"
-#include "tmr4.h"
+#include "mccp4_compare.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "mccp6_compare.h"
+#include "tmr4.h"
 
 #warning "This file will be removed in future MCC releases. Use system.h instead."
 

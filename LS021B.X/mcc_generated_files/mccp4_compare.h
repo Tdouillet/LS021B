@@ -1,17 +1,17 @@
 /**
-  MCCP6 Generated Driver API Header File 
+  MCCP4 Generated Driver API Header File 
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    mccp6.h
+    mccp4.h
 
   @Summary
-    This is the generated header file for the MCCP6 driver using PIC24 / dsPIC33 / PIC32MM MCUs
+    This is the generated header file for the MCCP4 driver using PIC24 / dsPIC33 / PIC32MM MCUs
 
   @Description
-    This header file provides implementations for driver APIs for MCCP6. 
+    This header file provides implementations for driver APIs for MCCP4. 
     Generation Information : 
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.171.4
         Device            :  PIC24FJ512GU410
@@ -41,8 +41,8 @@
     TERMS.
 */
 
-#ifndef _MCCP6_COMPARE_H
-#define _MCCP6_COMPARE_H
+#ifndef _MCCP4_COMPARE_H
+#define _MCCP4_COMPARE_H
 
 /**
   Section: Included Files
@@ -63,12 +63,12 @@
 
 /**
   @Summary
-    This function initializes MCCP/SCCP instance : 6
+    This function initializes MCCP/SCCP instance : 4
 
   @Description
-    This routine initializes the MCCP6 driver instance for : 6
+    This routine initializes the MCCP4 driver instance for : 4
     index, making it ready for clients to open and use it.
-    This routine must be called before any other MCCP6 routine is called.
+    This routine must be called before any other MCCP4 routine is called.
 	
   @Preconditions
     None.
@@ -89,33 +89,33 @@
     priVal = 0x1000;
     secVal = 0x2000;
 
-    MCCP6_COMPARE_Initializer();
+    MCCP4_COMPARE_Initializer();
     
-    MCCP6_COMPARE_CenterAlignedPWMConfig( priVal, secVal );
+    MCCP4_COMPARE_CenterAlignedPWMConfig( priVal, secVal );
   
-    MCCP6_COMPARE_Start();
+    MCCP4_COMPARE_Start();
 
     while(1)
     {
        
-        completeCycle = MCCP6_COMPARE_IsCompareCycleComplete( void );
+        completeCycle = MCCP4_COMPARE_IsCompareCycleComplete( void );
         if(completeCycle)
         {
-            MCCP6_COMPARE_Stop();
+            MCCP4_COMPARE_Stop();
         }
     }
     </code>
 */
 
-void MCCP6_COMPARE_Initialize (void);
+void MCCP4_COMPARE_Initialize (void);
 
 
 /**
   @Summary
-    Callback for MCCP6 COMPARE.
+    Callback for MCCP4 COMPARE.
 
   @Description
-    This routine is callback for MCCP6 COMPARE
+    This routine is callback for MCCP4 COMPARE
 
   @Param
     None.
@@ -124,9 +124,9 @@ void MCCP6_COMPARE_Initialize (void);
     None
  
   @Example 
-	Refer to MCCP6_Initialize(); for an example
+	Refer to MCCP4_Initialize(); for an example
 */
-void MCCP6_COMPARE_CallBack(void);
+void MCCP4_COMPARE_CallBack(void);
 
 /**
   @Summary
@@ -149,7 +149,7 @@ void MCCP6_COMPARE_CallBack(void);
     <code>
     while (true)
     {
-        MCCP6_COMPARE_Tasks();
+        MCCP4_COMPARE_Tasks();
 
         // Do other tasks
     }
@@ -157,15 +157,15 @@ void MCCP6_COMPARE_CallBack(void);
     
 */
 
-void MCCP6_COMPARE_Tasks( void );
+void MCCP4_COMPARE_Tasks( void );
 
 
 /**
   @Summary
-    Callback for MCCP6 COMPARE Timer.
+    Callback for MCCP4 COMPARE Timer.
 
   @Description
-    This routine is callback for MCCP6 COMPARE Timer
+    This routine is callback for MCCP4 COMPARE Timer
 
   @Param
     None.
@@ -174,10 +174,39 @@ void MCCP6_COMPARE_Tasks( void );
     None
  
   @Example 
-	Refer to MCCP6_Initialize(); for an example
+	Refer to MCCP4_Initialize(); for an example
 */
-void MCCP6_COMPARE_TimerCallBack(void);
+void MCCP4_COMPARE_TimerCallBack(void);
 
+/**
+  @Summary
+    Maintains the driver's state machine and implements its ISR
+
+  @Description
+    This routine is used to maintain the driver's internal state
+    machine and implement its ISR for interrupt-driven implementations.
+  
+  @Preconditions
+    None.
+
+  @Param
+    None.
+
+  @Returns
+    None.
+
+  @Example
+    <code>
+    while (true)
+    {
+        MCCP4_COMPARE_TimerTasks();
+
+        // Do other tasks
+    }
+    </code>
+    
+*/
+void MCCP4_COMPARE_TimerTasks( void );
 
 /**
   @Summary
@@ -187,7 +216,7 @@ void MCCP6_COMPARE_TimerCallBack(void);
     This routine enables the OC module with the corresponding operation mode.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     None.
@@ -196,11 +225,11 @@ void MCCP6_COMPARE_TimerCallBack(void);
     None.
 
   @Example 
-    Refer to MCCP6_COMPARE_Initializer() for an example	
+    Refer to MCCP4_COMPARE_Initializer() for an example	
  
 */
 
-void MCCP6_COMPARE_Start( void );
+void MCCP4_COMPARE_Start( void );
 
 /**
   @Summary
@@ -210,7 +239,7 @@ void MCCP6_COMPARE_Start( void );
     This routine disables the OC module.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     None.
@@ -220,7 +249,7 @@ void MCCP6_COMPARE_Start( void );
 
 */
 
-void MCCP6_COMPARE_Stop( void );
+void MCCP4_COMPARE_Stop( void );
 /**
   @Summary
     Sets the primary compare value.
@@ -229,7 +258,7 @@ void MCCP6_COMPARE_Stop( void );
     This routine sets the primary compare value.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     value - 16 bit primary compare value.
@@ -240,11 +269,11 @@ void MCCP6_COMPARE_Stop( void );
   @Example 
     <code>
         uint16_t value = 0x1000;
-        MCCP6_COMPARE_SingleCompareValueSet( value );
+        MCCP4_COMPARE_SingleCompareValueSet( value );
     <code>
 	
 */
-void MCCP6_COMPARE_SingleCompare16ValueSet( uint16_t value );
+void MCCP4_COMPARE_SingleCompare16ValueSet( uint16_t value );
 
 /**
   @Summary
@@ -254,7 +283,7 @@ void MCCP6_COMPARE_SingleCompare16ValueSet( uint16_t value );
     This routine sets the primary and secondary compare value.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     priVal - 16 bit primary compare value.
@@ -267,12 +296,12 @@ void MCCP6_COMPARE_SingleCompare16ValueSet( uint16_t value );
     <code>
         uint16_t priVal = 0x1000;
         uint16_t secVal = 0x2000;
-        MCCP6_COMPARE_DualCompareValueSet( priVal,secVal );
+        MCCP4_COMPARE_DualCompareValueSet( priVal,secVal );
     <code>
   	
 */
 
-void MCCP6_COMPARE_DualCompareValueSet( uint16_t priVal, uint16_t secVal );
+void MCCP4_COMPARE_DualCompareValueSet( uint16_t priVal, uint16_t secVal );
 
 /**
   @Summary
@@ -282,7 +311,7 @@ void MCCP6_COMPARE_DualCompareValueSet( uint16_t priVal, uint16_t secVal );
     This routine sets the primary and secondary compare value for for Dual Edge Buffered mode.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     priVal - 16 bit primary compare value.
@@ -295,11 +324,11 @@ void MCCP6_COMPARE_DualCompareValueSet( uint16_t priVal, uint16_t secVal );
     <code>
         uint16_t priVal = 0x1000;
         uint16_t secVal = 0x2000;
-        void MCCP6_COMPARE_DualEdgeBufferedConfig( priVal, secVal );
+        void MCCP4_COMPARE_DualEdgeBufferedConfig( priVal, secVal );
     <code>
 */
 
-void MCCP6_COMPARE_DualEdgeBufferedConfig( uint16_t priVal, uint16_t secVal );
+void MCCP4_COMPARE_DualEdgeBufferedConfig( uint16_t priVal, uint16_t secVal );
 
 /**
   @Summary
@@ -309,7 +338,7 @@ void MCCP6_COMPARE_DualEdgeBufferedConfig( uint16_t priVal, uint16_t secVal );
     This routine sets the primary and secondary compare value for Center Aligned PWM.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     priVal - 16 bit primary compare value.
@@ -319,11 +348,11 @@ void MCCP6_COMPARE_DualEdgeBufferedConfig( uint16_t priVal, uint16_t secVal );
     None.
 
   @Example 
-    Refer to MCCP6_COMPARE_Initializer() for an example
+    Refer to MCCP4_COMPARE_Initializer() for an example
 
 */
 
-void MCCP6_COMPARE_CenterAlignedPWMConfig( uint16_t priVal, uint16_t secVal );
+void MCCP4_COMPARE_CenterAlignedPWMConfig( uint16_t priVal, uint16_t secVal );
 
 /**
   @Summary
@@ -333,7 +362,7 @@ void MCCP6_COMPARE_CenterAlignedPWMConfig( uint16_t priVal, uint16_t secVal );
     This routine sets the primary and secondary compare value for Edge Aligned PWM.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     priVal - 16 bit primary compare value.
@@ -346,12 +375,12 @@ void MCCP6_COMPARE_CenterAlignedPWMConfig( uint16_t priVal, uint16_t secVal );
     <code>
         uint16_t priVal = 0x1000;
         uint16_t secVal = 0x2000;
-        MCCP6_COMPARE_EdgeAlignedPWMConfig( priVal,secVal );
+        MCCP4_COMPARE_EdgeAlignedPWMConfig( priVal,secVal );
     <code> 
  	
 */
 
-void MCCP6_COMPARE_EdgeAlignedPWMConfig( uint16_t priVal, uint16_t secVal );
+void MCCP4_COMPARE_EdgeAlignedPWMConfig( uint16_t priVal, uint16_t secVal );
 
 /**
   @Summary
@@ -361,7 +390,7 @@ void MCCP6_COMPARE_EdgeAlignedPWMConfig( uint16_t priVal, uint16_t secVal );
     This routine sets the primary compare value for Frequency Pulse mode.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     priVal - 16 bit primary compare value.
@@ -372,11 +401,11 @@ void MCCP6_COMPARE_EdgeAlignedPWMConfig( uint16_t priVal, uint16_t secVal );
   @Example 
     <code>
         uint16_t priVal = 0x1000;
-        void MCCP6_COMPARE_VariableFrequencyPulseConfig( priVal );
+        void MCCP4_COMPARE_VariableFrequencyPulseConfig( priVal );
     <code> 
 */
 
-void MCCP6_COMPARE_VariableFrequencyPulseConfig( uint16_t priVal );
+void MCCP4_COMPARE_VariableFrequencyPulseConfig( uint16_t priVal );
 
 /**
   @Summary
@@ -386,7 +415,7 @@ void MCCP6_COMPARE_VariableFrequencyPulseConfig( uint16_t priVal );
     This routine gets the status of the compare cycle completion.
 
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 
   @Param
     None.
@@ -397,12 +426,12 @@ void MCCP6_COMPARE_VariableFrequencyPulseConfig( uint16_t priVal );
     false : When the compare cycle has not completed. 
 
   @Example 
-    Refer to MCCP6_COMPARE_Initializer() for an example
+    Refer to MCCP4_COMPARE_Initializer() for an example
 	
 
 */
 
-bool MCCP6_COMPARE_IsCompareCycleComplete( void );
+bool MCCP4_COMPARE_IsCompareCycleComplete( void );
 
 /**
   @Summary
@@ -412,7 +441,7 @@ bool MCCP6_COMPARE_IsCompareCycleComplete( void );
     This routine gets the status of the timer trigger source if it has been triggered.
 	
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 	
   @Param
     None
@@ -424,14 +453,14 @@ bool MCCP6_COMPARE_IsCompareCycleComplete( void );
 
    @Example 
     <\code>	
-    if(MCCP6_COMPARE_TriggerStatusGet())
+    if(MCCP4_COMPARE_TriggerStatusGet())
     {
-        MCCP6_COMPARE_TriggerStatusClear();
+        MCCP4_COMPARE_TriggerStatusClear();
     }
     <\code>	
 */
 
-bool MCCP6_COMPARE_TriggerStatusGet( void );
+bool MCCP4_COMPARE_TriggerStatusGet( void );
 
 /**
   @Summary
@@ -441,7 +470,7 @@ bool MCCP6_COMPARE_TriggerStatusGet( void );
     This routine sets the status of the timer trigger source.
 	
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called 
+    MCCP4_COMPARE_Initializer function should have been called 
 	
   @Param
     None.
@@ -451,11 +480,11 @@ bool MCCP6_COMPARE_TriggerStatusGet( void );
 
    @Example 
     <\code>	
-        MCCP6_COMPARE_TriggerStatusSet();
+        MCCP4_COMPARE_TriggerStatusSet();
     <\code>	
 */
 
-void MCCP6_COMPARE_TriggerStatusSet( void );
+void MCCP4_COMPARE_TriggerStatusSet( void );
 
 /**
   @Summary
@@ -465,7 +494,7 @@ void MCCP6_COMPARE_TriggerStatusSet( void );
     This routine clears the status of the timer trigger.
 	
   @Preconditions
-    MCCP6_COMPARE_Initializer function should have been called
+    MCCP4_COMPARE_Initializer function should have been called
 
   @Param
     None.
@@ -474,11 +503,11 @@ void MCCP6_COMPARE_TriggerStatusSet( void );
     None.
 	
   @Example 
-    Refer to MCCP6_COMPARE_TriggerStatusGet() for an example	
+    Refer to MCCP4_COMPARE_TriggerStatusGet() for an example	
 
 */
 
-void MCCP6_COMPARE_TriggerStatusClear( void );
+void MCCP4_COMPARE_TriggerStatusClear( void );
 
 /**
   @Summary
@@ -494,7 +523,7 @@ void MCCP6_COMPARE_TriggerStatusClear( void );
     Gets the status of the single compare set
 */
 
-bool MCCP6_COMPARE_SingleCompareStatusGet( void );
+bool MCCP4_COMPARE_SingleCompareStatusGet( void );
 
 /**
   @Summary
@@ -510,7 +539,7 @@ bool MCCP6_COMPARE_SingleCompareStatusGet( void );
     None.
 */
 
-void MCCP6_COMPARE_SingleCompareStatusClear( void );
+void MCCP4_COMPARE_SingleCompareStatusClear( void );
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -518,7 +547,7 @@ void MCCP6_COMPARE_SingleCompareStatusClear( void );
 
 #endif
 
-#endif //_MCCP6_H
+#endif //_MCCP4_H
     
 /**
  End of File

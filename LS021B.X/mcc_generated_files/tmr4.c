@@ -96,10 +96,10 @@ void TMR4_Initialize (void)
 {
     //TMR4 0; 
     TMR4 = 0x00;
-    //Period = 0.016666 s; Frequency = 4000000 Hz; PR4 8332; 
-    PR4 = 0x1046;
+    //Period = 0.008333 s; Frequency = 16000000 Hz; PR4 16665; 
+    PR4 = 0x4119;
     //TCKPS 1:8; T32 16 Bit; TON enabled; TSIDL disabled; TCS FOSC/2; TECS SOSC; TGATE disabled; 
-    T4CON = 0x0010;
+    T4CON = 0x8010;
 
     if(TMR4_InterruptHandler == NULL)
     {
@@ -110,6 +110,8 @@ void TMR4_Initialize (void)
     IEC1bits.T4IE = true;
 	
     tmr4_obj.timerElapsed = false;
+    
+    T4CONbits.TON = 0;
 
 }
 

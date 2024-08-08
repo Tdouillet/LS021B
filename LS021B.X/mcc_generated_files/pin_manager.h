@@ -1516,6 +1516,152 @@
 #define INTB_SetDigitalOutput() (_TRISD11 = 0)
 /**
   @Summary
+    Sets the GPIO pin, RD13, high using LATD13.
+
+  @Description
+    Sets the GPIO pin, RD13, high using LATD13.
+
+  @Preconditions
+    The RD13 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD13 high (1)
+    BP4_SetHigh();
+    </code>
+
+*/
+#define BP4_SetHigh()          (_LATD13 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RD13, low using LATD13.
+
+  @Description
+    Sets the GPIO pin, RD13, low using LATD13.
+
+  @Preconditions
+    The RD13 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD13 low (0)
+    BP4_SetLow();
+    </code>
+
+*/
+#define BP4_SetLow()           (_LATD13 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RD13, using LATD13.
+
+  @Description
+    Toggles the GPIO pin, RD13, using LATD13.
+
+  @Preconditions
+    The RD13 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RD13
+    BP4_Toggle();
+    </code>
+
+*/
+#define BP4_Toggle()           (_LATD13 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RD13.
+
+  @Description
+    Reads the value of the GPIO pin, RD13.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RD13
+    postValue = BP4_GetValue();
+    </code>
+
+*/
+#define BP4_GetValue()         _RD13
+/**
+  @Summary
+    Configures the GPIO pin, RD13, as an input.
+
+  @Description
+    Configures the GPIO pin, RD13, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD13 as an input
+    BP4_SetDigitalInput();
+    </code>
+
+*/
+#define BP4_SetDigitalInput()  (_TRISD13 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RD13, as an output.
+
+  @Description
+    Configures the GPIO pin, RD13, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD13 as an output
+    BP4_SetDigitalOutput();
+    </code>
+
+*/
+#define BP4_SetDigitalOutput() (_TRISD13 = 0)
+/**
+  @Summary
     Sets the GPIO pin, RD15, high using LATD15.
 
   @Description
@@ -1660,6 +1806,152 @@
 
 */
 #define R0_SetDigitalOutput() (_TRISD15 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RD7, high using LATD7.
+
+  @Description
+    Sets the GPIO pin, RD7, high using LATD7.
+
+  @Preconditions
+    The RD7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD7 high (1)
+    BP6_SetHigh();
+    </code>
+
+*/
+#define BP6_SetHigh()          (_LATD7 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RD7, low using LATD7.
+
+  @Description
+    Sets the GPIO pin, RD7, low using LATD7.
+
+  @Preconditions
+    The RD7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD7 low (0)
+    BP6_SetLow();
+    </code>
+
+*/
+#define BP6_SetLow()           (_LATD7 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RD7, using LATD7.
+
+  @Description
+    Toggles the GPIO pin, RD7, using LATD7.
+
+  @Preconditions
+    The RD7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RD7
+    BP6_Toggle();
+    </code>
+
+*/
+#define BP6_Toggle()           (_LATD7 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RD7.
+
+  @Description
+    Reads the value of the GPIO pin, RD7.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RD7
+    postValue = BP6_GetValue();
+    </code>
+
+*/
+#define BP6_GetValue()         _RD7
+/**
+  @Summary
+    Configures the GPIO pin, RD7, as an input.
+
+  @Description
+    Configures the GPIO pin, RD7, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD7 as an input
+    BP6_SetDigitalInput();
+    </code>
+
+*/
+#define BP6_SetDigitalInput()  (_TRISD7 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RD7, as an output.
+
+  @Description
+    Configures the GPIO pin, RD7, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD7 as an output
+    BP6_SetDigitalOutput();
+    </code>
+
+*/
+#define BP6_SetDigitalOutput() (_TRISD7 = 0)
 /**
   @Summary
     Sets the GPIO pin, RD8, high using LATD8.
@@ -2244,6 +2536,152 @@
 
 */
 #define R1_SetDigitalOutput() (_TRISF13 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RG15, high using LATG15.
+
+  @Description
+    Sets the GPIO pin, RG15, high using LATG15.
+
+  @Preconditions
+    The RG15 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RG15 high (1)
+    BP3_SetHigh();
+    </code>
+
+*/
+#define BP3_SetHigh()          (_LATG15 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RG15, low using LATG15.
+
+  @Description
+    Sets the GPIO pin, RG15, low using LATG15.
+
+  @Preconditions
+    The RG15 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RG15 low (0)
+    BP3_SetLow();
+    </code>
+
+*/
+#define BP3_SetLow()           (_LATG15 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RG15, using LATG15.
+
+  @Description
+    Toggles the GPIO pin, RG15, using LATG15.
+
+  @Preconditions
+    The RG15 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RG15
+    BP3_Toggle();
+    </code>
+
+*/
+#define BP3_Toggle()           (_LATG15 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RG15.
+
+  @Description
+    Reads the value of the GPIO pin, RG15.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RG15
+    postValue = BP3_GetValue();
+    </code>
+
+*/
+#define BP3_GetValue()         _RG15
+/**
+  @Summary
+    Configures the GPIO pin, RG15, as an input.
+
+  @Description
+    Configures the GPIO pin, RG15, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RG15 as an input
+    BP3_SetDigitalInput();
+    </code>
+
+*/
+#define BP3_SetDigitalInput()  (_TRISG15 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RG15, as an output.
+
+  @Description
+    Configures the GPIO pin, RG15, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RG15 as an output
+    BP3_SetDigitalOutput();
+    </code>
+
+*/
+#define BP3_SetDigitalOutput() (_TRISG15 = 0)
 
 /**
     Section: Function Prototypes
@@ -2279,6 +2717,196 @@
 */
 void PIN_MANAGER_Initialize (void);
 
+/**
+  @Summary
+    Callback for BP6 Pin.
+
+  @Description
+    This routine is callback for BP6 Pin
+
+  @Param
+    None.
+
+  @Returns
+    None
+ 
+ 
+  @Example 
+    <code>
+        BP6_SetInterruptHandler(&BP6_CallBack);
+    </code>
+*/
+void BP6_CallBack(void);
+
+/**
+  @Summary
+    Callback for BP4 Pin.
+
+  @Description
+    This routine is callback for BP4 Pin
+
+  @Param
+    None.
+
+  @Returns
+    None
+ 
+ 
+  @Example 
+    <code>
+        BP4_SetInterruptHandler(&BP4_CallBack);
+    </code>
+*/
+void BP4_CallBack(void);
+
+/**
+  @Summary
+    Callback for BP3 Pin.
+
+  @Description
+    This routine is callback for BP3 Pin
+
+  @Param
+    None.
+
+  @Returns
+    None
+ 
+ 
+  @Example 
+    <code>
+        BP3_SetInterruptHandler(&BP3_CallBack);
+    </code>
+*/
+void BP3_CallBack(void);
+
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BP6_SetInterruptHandler(&BP6_CallBack);
+    </code>
+*/
+void BP6_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BP6_SetIOCInterruptHandler(&BP6_CallBack);
+    </code>
+*/
+void __attribute__((deprecated("\nThis will be removed in future MCC releases. \nUse BP6_SetInterruptHandler instead."))) BP6_SetIOCInterruptHandler(void *handler);
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BP4_SetInterruptHandler(&BP4_CallBack);
+    </code>
+*/
+void BP4_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BP4_SetIOCInterruptHandler(&BP4_CallBack);
+    </code>
+*/
+void __attribute__((deprecated("\nThis will be removed in future MCC releases. \nUse BP4_SetInterruptHandler instead."))) BP4_SetIOCInterruptHandler(void *handler);
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BP3_SetInterruptHandler(&BP3_CallBack);
+    </code>
+*/
+void BP3_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Assigns a function pointer with a callback address.
+
+  @Description
+    This routine assigns a function pointer with a callback address.
+
+  @Param
+    Address of the callback routine.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>
+        BP3_SetIOCInterruptHandler(&BP3_CallBack);
+    </code>
+*/
+void __attribute__((deprecated("\nThis will be removed in future MCC releases. \nUse BP3_SetInterruptHandler instead."))) BP3_SetIOCInterruptHandler(void *handler);
 
 
 #endif
+
+#define R0 LATDbits.LATD15
+#define R1 LATFbits.LATF13
+#define G0 LATFbits.LATF12
+#define G1 LATBbits.LATB12
+#define B0 LATBbits.LATB13
+#define B1 LATBbits.LATB14

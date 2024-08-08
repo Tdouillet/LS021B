@@ -52,10 +52,10 @@ void CLOCK_Initialize(void)
     CLKDIV = 0x3000;
     // STOR disabled; STORPOL Interrupt when STOR is 1; STSIDL disabled; STLPOL Interrupt when STLOCK is 1; STLOCK disabled; STSRC SOSC; STEN disabled; TUN Center frequency; 
     OSCTUN = 0x00;
-    // ROEN enabled; ROSWEN disabled; ROSEL FOSC; ROOUT disabled; ROSIDL disabled; ROSLP disabled; 
-    REFOCONL = 0x8000;
-    // RODIV 5; 
-    REFOCONH = 0x05;
+    // ROEN enabled; ROSWEN enabled; ROSEL FOSC; ROOUT enabled; ROSIDL disabled; ROSLP disabled; 
+    REFOCONL = 0x9200;
+    // RODIV 0; 
+    REFOCONH = 0x00;
     // DIV 0; 
     OSCDIV = 0x00;
     // TRIM 0; 
@@ -74,7 +74,10 @@ void CLOCK_Initialize(void)
     PMD7 = 0x00;
     // U5MD enabled; DMTMD enabled; CLC3MD enabled; CLC4MD enabled; CLC1MD enabled; CLC2MD enabled; U6MD enabled; 
     PMD8 = 0x00;
-    // CF no clock failure; NOSC FRC; SOSCEN disabled; POSCEN disabled; CLKLOCK unlocked; OSWEN Switch is Complete; IOLOCK not-active; 
-    __builtin_write_OSCCONH((uint8_t) (0x00));
-    __builtin_write_OSCCONL((uint8_t) (0x00));
+    // CF no clock failure; NOSC PRIPLL; SOSCEN disabled; POSCEN disabled; CLKLOCK unlocked; OSWEN Switch is Complete; IOLOCK not-active; 
+    __builtin_write_OSCCONH((uint8_t) (0x03));
+    __builtin_write_OSCCONL((uint8_t) (0x01));
+    // Wait for Clock switch to occur
+    while (OSCCONbits.OSWEN != 0);
+    while (OSCCONbits.LOCK != 1);
 }

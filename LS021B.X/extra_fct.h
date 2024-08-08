@@ -76,6 +76,10 @@ extern "C" {
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 
-void Draw_Black(void);
-void Draw_White(void);
-
+void Black(void);
+void Blue(void);
+void Green(void);
+void Red(void);
+void White(void);
+void BCK_On();
+void BCK_Off();
