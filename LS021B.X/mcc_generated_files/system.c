@@ -117,10 +117,11 @@
 #include "pin_manager.h"
 #include "clock.h"
 #include "system.h"
-#include "mccp4_compare.h"
 #include "interrupt_manager.h"
 #include "traps.h"
 #include "tmr4.h"
+#include "mccp5_compare.h"
+#include "mccp4_compare.h"
 
 void SYSTEM_Initialize(void)
 {
@@ -128,6 +129,7 @@ void SYSTEM_Initialize(void)
     CLOCK_Initialize();
     INTERRUPT_Initialize();
     MCCP4_COMPARE_Initialize();
+    MCCP5_COMPARE_Initialize();
     TMR4_Initialize();
 }
 

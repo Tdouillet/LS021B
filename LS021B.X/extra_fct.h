@@ -83,3 +83,5 @@ void Red(void);
 void White(void);
 void BCK_On();
 void BCK_Off();
+void GCK_On();
+void GCK_Off();

@@ -65,3 +65,10 @@ void BCK_On(void){
 void BCK_Off(void){
     CCP4RB = 0x2A;
 }
+
+void GCK_On(void){
+    CCP5RB = 0xA2C;
+}
+void GCK_Off(void){
+    CCP5RB = 0x1459;
+}

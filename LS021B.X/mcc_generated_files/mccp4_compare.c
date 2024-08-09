@@ -47,7 +47,9 @@
 */
 
 #include "mccp4_compare.h"
-
+#include "pin_manager.h"
+#include "system.h"
+#include "../DELAY.h"
 /** OC Mode.
 
   @Summary
@@ -85,8 +87,8 @@ void MCCP4_COMPARE_Initialize (void)
     CCP4TMRL = 0x00;
     //TMR 0; 
     CCP4TMRH = 0x00;
-    //PR 41; 
-    CCP4PRL = 0x29;
+    //PR 42; 
+    CCP4PRL = 0x2A;
     //PR 0; 
     CCP4PRH = 0x00;
     //CMP 0; 
@@ -103,12 +105,13 @@ void MCCP4_COMPARE_Initialize (void)
 
 }
 
-void __attribute__ ((weak)) MCCP4_COMPARE_CallBack(void)
+void  MCCP4_COMPARE_CallBack(void)
 {
-    // Add your custom callback code here
+    BCK_SetHigh();
+    BCK_SetLow();
 }
 
-void MCCP4_COMPARE_Tasks( void )
+void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCP4Interrupt ( void )
 {
     if(IFS5bits.CCP4IF)
     {
@@ -119,9 +122,9 @@ void MCCP4_COMPARE_Tasks( void )
     }
 }
 
-void __attribute__ ((weak)) MCCP4_COMPARE_TimerCallBack(void)
+void MCCP4_COMPARE_TimerCallBack(void)
 {
-    // Add your custom callback code here
+    
 }
 
 

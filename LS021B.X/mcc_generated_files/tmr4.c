@@ -49,14 +49,10 @@
 
 #include <stdio.h>
 #include "tmr4.h"
-#include "pin_manager.h"
 
 /**
  Section: File specific functions
 */
-
-
-
 void (*TMR4_InterruptHandler)(void) = NULL;
 void TMR4_CallBack(void);
 
@@ -110,8 +106,6 @@ void TMR4_Initialize (void)
     IEC1bits.T4IE = true;
 	
     tmr4_obj.timerElapsed = false;
-    
-    T4CONbits.TON = 0;
 
 }
 
@@ -165,7 +159,7 @@ uint16_t TMR4_Counter16BitGet( void )
 
 void __attribute__ ((weak)) TMR4_CallBack(void)
 {
-    
+    // Add your custom callback code here
 }
 
 void  TMR4_SetInterruptHandler(void (* InterruptHandler)(void))
